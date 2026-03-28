@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>İyi ki Doğdun Sevgilim</title>
+    <style>
+        /* Sayfanın genel tasarımı */
+        body {
+    background-image: url('arka_plan.jpg'); /* Resmin adını buraya yaz */
+    background-size: cover; /* Resmi tüm ekrana sığdırır */
+    background-position: center; /* Resmi ortalar */
+    background-attachment: fixed; /* Sayfa kaydırılsa bile resim sabit kalır (Çok şık durur) */
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 50px;
+}
+        
+        h1 { color: #333; font-weight: 300; margin-bottom: 40px; }
+
+        /* Güllerin kutusu */
+        .gul-kutusu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap; /* Sığmazlarsa alt satıra geç ve ortala */
+            max-width: 800px; 
+            margin: 0 auto; 
+        }
+
+        .gul {
+            width: 100px; 
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .gul:hover { transform: scale(1.1); }
+
+        /* Arka planı karartan pencere */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            animation: kararEfekti 0.4s ease-out;
+            z-index: 1000;
+        }
+
+        /* Açılan fotoğraf */
+        .modal img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            animation: fotoBuyumeEfekti 0.4s ease-out forwards;
+        }
+
+        .kapat {
+            position: absolute;
+            top: 20px; right: 40px;
+            color: white;
+            font-size: 50px;
+            cursor: pointer;
+        }
+
+        /* --- EFEKTLER --- */
+        @keyframes kararEfekti {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fotoBuyumeEfekti {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>İyi ki Doğdun Aşkıımmm... Güllere tıklaa bitanemmm 🤍</h1>
+
+    <div class="gul-kutusu">
+        <img src="beyaz_gul.png" class="gul" onclick="fotografAc('foto1.jpg')">
+        <img src="beyaz_gul.png" class="gul" onclick="fotografAc('foto2.jpg')">
+        <img src="beyaz_gul.png" class="gul" onclick="fotografAc('foto3.jpg')">
+        <img src="beyaz_gul.png" class="gul" onclick="fotografAc('foto4.jpg')">
+        <img src="beyaz_gul.png" class="gul" onclick="fotografAc('foto5.jpeg')">
+        <img src="beyaz_gul.png" class="gul" onclick="fotografAc('foto6.jpeg')">
+        <img src="beyaz_gul.png" class="gul" onclick="fotografAc('foto7.jpeg')">
+    </div>
+
+    <div id="fotoPenceresi" class="modal">
+        <span class="kapat" onclick="fotografKapat()">&times;</span>
+        <img id="buyuyenFoto" src="">
+    </div>
+
+    <script>
+        function fotografAc(fotoIsmi) {
+            document.getElementById("fotoPenceresi").style.display = "flex";
+            document.getElementById("buyuyenFoto").src = fotoIsmi;
+        }
+
+        function fotografKapat() {
+            document.getElementById("fotoPenceresi").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
